@@ -1,6 +1,5 @@
 # day 2
 
-library(dplyr)
 
 input <- read.csv("inputs/input_day2.csv", col.names = "input", header = F)
 
