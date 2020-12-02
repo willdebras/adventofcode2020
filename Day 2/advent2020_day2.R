@@ -1,7 +1,7 @@
 # day 2
 
 
-input <- read.csv("inputs/input_day2.csv", col.names = "input", header = F)
+input <- read.csv("Day 2/input_day2.csv", col.names = "input", header = F)
 
 
 password_qual <- function(x) {
