@@ -1,5 +1,7 @@
 # day 3
 
+library(dplyr)
+
 input <- read.delim("Day 3/input_day3.txt", sep = "\n", col.names = "text", header = F)
 
 input_matrix <- strsplit(input$text, "") %>% as.data.frame() %>% t()
