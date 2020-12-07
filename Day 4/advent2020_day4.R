@@ -42,7 +42,7 @@ length(valids[valids==TRUE])
 
 # Part 2 
 
-# List of dataframes of valid passsports so far
+# List of dataframes of valid passports so far
 
 df_list2 <- df_list[valids==TRUE]
 
