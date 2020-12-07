@@ -1,6 +1,17 @@
-#base script to scrape stars
+---
+output: github_document
+---
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r badges, echo = FALSE}
 badge_stars <- function(color = "green", url = NULL, cookie = Sys.getenv("ADVENT_COOKIE")) {
   
   req <- httr::GET(glue::glue('https://adventofcode.com/'),
@@ -27,5 +38,17 @@ badge_stars <- function(color = "green", url = NULL, cookie = Sys.getenv("ADVENT
   
   paste0("[", badge, "](", url, ")")
 }
+```
+
+### adventofcode2020
+
+<!-- badges: start -->
+`r badge_stars("10", "yellow")`
+<!-- badges: end -->
+
+If you are finding this, this is my personal repo for the 2020 Advent of Code challenge. I am using this to practice algorithmic thinking, branch out and write more code in Julia, and to just have fun. Feel free to ping me if you have questions!
 
 
+### Star badges
+
+I am also using this repo as an opportunity to test out adding custom repo badges that scrape a user's star count and create a badge out of it. You can see an example at the top of this page. 
