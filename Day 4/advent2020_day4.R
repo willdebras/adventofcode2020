@@ -42,13 +42,37 @@ length(valids[valids==TRUE])
 
 # Part 2 
 
-# fill in missing data so we can do data validation
+# List of dataframes of valid passsports so far
 
-all_fields <- Reduce(unique, lapply(df_list, names))
-complete_df_list <- lapply(df_list, complete_data, all_fields = all_fields)
+df_list2 <- df_list[valids==TRUE]
 
 
-valid_2 <- function(df) {
+valid2 <- function(df) {
   
+  
+  val_byr <- as.numeric(df[,"byr"])>=1920 & as.numeric(df[,"byr"]) <= 2002
+  val_iyr <- as.numeric(df[,"iyr"])>=2010 & as.numeric(df[,"iyr"]) <= 2020
+  val_eyr <- as.numeric(df[,"eyr"])>=2020 & as.numeric(df[,"eyr"]) <= 2030
+  val_hcl <- grepl("^\\#[0-9a-f]{6}$", df[,"hcl"])
+  val_ecl <- df[,"ecl"] %in% c("amb", "blu", "brn", "gry", "grn", "hzl", "oth")
+  val_pid <- grepl("^[0-9]{9}$", df[,"pid"])
+  
+  val_hgt <- ifelse(grepl("cm", df[,"hgt"]), # the if for cm
+                    as.numeric(substr(df[,"hgt"], 1, nchar(df[,"hgt"])-2))>=150 & as.numeric(substr(df[,"hgt"], 1, nchar(df[,"hgt"])-2))<=193, # the logical for cm
+                    ifelse(grepl("in", df[,"hgt"]), # the if for inches
+                           as.numeric(substr(df[,"hgt"], 1, nchar(df[,"hgt"])-2))>=59 & as.numeric(substr(df[,"hgt"], 1, nchar(df[,"hgt"])-2))<=76, # the logical for inches
+                           FALSE
+                    )
+  )
+  
+  valid_all_fields <- all(val_byr, val_iyr, val_eyr, val_hcl, val_ecl, val_pid, val_hgt)
+
+  return(valid_all_fields)
   
 }
+
+
+valids2 <- lapply(df_list2, valid2)
+
+length(valids2[valids2==TRUE])
+
